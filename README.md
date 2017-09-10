@@ -7,7 +7,7 @@ still attemping to root the machine, try harder :). Without further ado, let's d
 
 ## Download and Find It
 
-Download the Proteus VM from (VulnHub)[https://www.vulnhub.com/entry/proteus-1,193/], load it up, and pick your favorite tool. For quick identification,
+Download the Proteus VM from [VulnHub](https://www.vulnhub.com/entry/proteus-1,193/), load it up, and pick your favorite tool. For quick identification,
  I use nmap.
  
 `nmap 192.168.2.0/24 -sP
