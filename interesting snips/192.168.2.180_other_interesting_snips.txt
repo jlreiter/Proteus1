@@ -1,0 +1,97 @@
+$ cat route.delete.php
+<?php
+
+$app->get(
+    '/delete/:filename/?',
+    $work = function ($filename) use ($app) {
+        if (isset($_SESSION['name'])) {
+            $message = "Logged in as: " . $_SESSION['name'];
+            if (isset($_SESSION['admin'])) {
+                $admin = 1;
+            } else {
+                $admin = 0;
+            }
+        } else {
+            $app->redirect(conf::INSTALLED_DIRECTORY);
+        }
+        //get all submitted files
+        foreach(array_diff(scandir(Conf::FILE_PATH), array('.', '..')) as $file){
+            if (strpos(base64_decode($filename), $file) !== false) {
+                shell_exec('rm '. Conf::FILE_PATH . base64_decode($filename));
+                $message = "Successfully deleted " . Conf::FILE_PATH . base64_decode($filename);
+            }
+        }
+        $app->render(
+            'delete.twig.html',
+            array(
+                'adminMessage' => $message
+            )
+        );
+    }
+);
+
+
+
+
+
+$ cat PROTEUS_INSTALL
+THIS SOFTWARE COMES WITH A PRE INSTALLED USER CALLED "malwareadm"
+
+THE SOFTWARE CAN BE SET UP REMOTELY VIA SSH OR ANY OTHER MEANS.
+
+THE KEY GENERATED FOR THIS USER IS:
+-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: AES-128-CBC,6F2AF2450CD5C1D72E159F0B78548D69
+
+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
+-----END RSA PRIVATE KEY-----
+

@@ -1,0 +1,20 @@
+# Nmap 7.60 scan initiated Fri Sep  8 21:38:53 2017 as: nmap -sV -Pn -vv -p 80 --script=http-vhosts,http-userdir-enum,http-apache-negotiation,http-backup-finder,http-config-backup,http-default-accounts,http-email-harvest,http-methods,http-method-tamper,http-passwd,http-robots.txt -oN /root/scripts/recon_enum/results/exam/192.168.2.180_http.nmap 192.168.2.180
+Nmap scan report for Proteus.BreakfastHouse (192.168.2.180)
+Host is up, received arp-response (0.00017s latency).
+Scanned at 2017-09-08 21:38:53 CDT for 9s
+
+PORT   STATE SERVICE REASON         VERSION
+80/tcp open  http    syn-ack ttl 64 Apache httpd
+| http-email-harvest: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=Proteus.BreakfastHouse
+|_  malwareadm@proteus.loca
+| http-methods: 
+|_  Supported Methods: GET HEAD
+|_http-server-header: Apache
+| http-vhosts: 
+|_127 names had status 200
+MAC Address: 00:0C:29:08:51:3D (VMware)
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Sep  8 21:39:02 2017 -- 1 IP address (1 host up) scanned in 8.48 seconds

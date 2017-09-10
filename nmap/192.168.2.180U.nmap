@@ -1,0 +1,64 @@
+# Nmap 7.60 scan initiated Fri Sep  8 21:34:00 2017 as: nmap -vv -Pn -A -sC -sU -T 4 --top-ports 200 -oN /root/scripts/recon_enum/results/exam/192.168.2.180U.nmap -oX /root/scripts/recon_enum/results/exam/nmap/192.168.2.180U_nmap_scan_import.xml 192.168.2.180
+Warning: 192.168.2.180 giving up on port because retransmission cap hit (6).
+Increasing send delay for 192.168.2.180 from 100 to 200 due to 11 out of 12 dropped probes since last increase.
+Increasing send delay for 192.168.2.180 from 200 to 400 due to 11 out of 11 dropped probes since last increase.
+Increasing send delay for 192.168.2.180 from 400 to 800 due to 11 out of 16 dropped probes since last increase.
+adjust_timeouts2: packet supposedly had rtt of -100665 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -100665 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -101798 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -101798 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -101985 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -101985 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -102155 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -102155 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -102201 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -102201 microseconds.  Ignoring time.
+Nmap scan report for Proteus.BreakfastHouse (192.168.2.180)
+Host is up, received arp-response (0.00026s latency).
+Scanned at 2017-09-08 21:34:01 CDT for 292s
+Not shown: 179 closed ports
+Reason: 179 port-unreaches
+PORT      STATE         SERVICE        REASON      VERSION
+68/udp    open|filtered dhcpc          no-response
+177/udp   open|filtered xdmcp          no-response
+389/udp   open|filtered ldap           no-response
+500/udp   open|filtered isakmp         no-response
+514/udp   open|filtered syslog         no-response
+1019/udp  open|filtered unknown        no-response
+1026/udp  open|filtered win-rpc        no-response
+1033/udp  open|filtered netinfo-local  no-response
+1782/udp  open|filtered hp-hcip        no-response
+2002/udp  open|filtered globe          no-response
+2967/udp  open|filtered symantec-av    no-response
+4444/udp  open|filtered krb524         no-response
+5355/udp  open|filtered llmnr          no-response
+5632/udp  open|filtered pcanywherestat no-response
+22986/udp open|filtered unknown        no-response
+31337/udp open|filtered BackOrifice    no-response
+|_backorifice-info: ERROR: Script execution failed (use -d to debug)
+34555/udp open|filtered unknown        no-response
+44968/udp open|filtered unknown        no-response
+49153/udp open|filtered unknown        no-response
+49191/udp open|filtered unknown        no-response
+49205/udp open|filtered unknown        no-response
+MAC Address: 00:0C:29:08:51:3D (VMware)
+Too many fingerprints match this host to give specific OS details
+TCP/IP fingerprint:
+SCAN(V=7.60%E=4%D=9/8%OT=%CT=%CU=7%PV=Y%DS=1%DC=D%G=N%M=000C29%TM=59B3543D%P=x86_64-pc-linux-gnu)
+SEQ(CI=I)
+SEQ(CI=I%II=I)
+T5(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)
+T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)
+T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)
+U1(R=Y%DF=N%T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)
+IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 1 hop
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   0.26 ms Proteus.BreakfastHouse (192.168.2.180)
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Sep  8 21:38:53 2017 -- 1 IP address (1 host up) scanned in 293.15 seconds

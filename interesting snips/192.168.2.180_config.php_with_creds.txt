@@ -1,0 +1,20 @@
+$ cat config.php
+<?php
+
+class Conf
+{
+
+    /* MySQL */
+    const MYSQL_USERNAME    =   'root';
+    const MYSQL_PASSWORD    =   'viWJ.cgdf&3a]d3xh;C/c]&c?';
+    const MYSQL_HOST        =   '127.0.0.1';
+    const MYSQL_DATABASE    =   'proteus_db';
+
+    /* Application */
+    const DEBUG                 =   false; 	                    //true/false
+    const INSTALLED_DIRECTORY   =   '/';                        //something
+    const MAIL_ALIAS		    =	'malwareadm@proteus.local';	//Something like user@internet.co.za
+    const SECRET                =   'thisisthesecret';          //This is the secret to salt the hashes
+    const FILE_PATH             =   '/home/malwareadm/samples/'; //This is the file path of where the execs will be saved
+}
+
