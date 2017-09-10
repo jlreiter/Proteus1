@@ -7,19 +7,14 @@ still attemping to root the machine, try harder :). Without further ado, let's d
 
 ## Download and Find It
 
-Download the Proteus VM from [VulnHub](https://www.vulnhub.com/entry/proteus-1,193/), load it up, and pick your favorite tool. For quick identification,
- I use nmap.
- 
-`nmap 192.168.2.0/24 -sP
-Starting Nmap 7.70 ( https://nmap.org )
-Nmap scan report for Proteus (192.168.2.180)
-Host is up (0.23s latency).
-`
+Download the Proteus VM from [VulnHub](https://www.vulnhub.com/entry/proteus-1,193/), load it up, and pick your favorite tool. For quick identification, I use nmap.  
+
+`nmap 192.168.2.0/24 -sP Starting Nmap 7.70 ( https://nmap.org )  `  
+`Nmap scan report for Proteus (192.168.2.180)Host is up (0.23s latency).`
 
 ## Start Enumeration
 
-I use a series of scripts to gather most of the information for me. Reconscan by Mike Czumak does an nmap script and starts work on additional modules
-depending on what ports are determined to be open. There are three main ports open: 22, 80, and 5355
+I use a series of scripts to gather most of the information for me. Reconscan by Mike Czumak does an nmap script and starts work on additional modules depending on what ports are determined to be open. There are three main ports open: 22, 80, and 5355
 
 <INSERT CODE/IMAGE HERE>
 
