@@ -16,21 +16,21 @@ Download the Proteus VM from [VulnHub](https://www.vulnhub.com/entry/proteus-1,1
 
 I use a series of scripts to gather most of the information for me. Reconscan by Mike Czumak does an nmap script and starts work on additional modules depending on what ports are determined to be open. There are three main ports open: 22, 80, and 5355
 
-> PORT     STATE SERVICE REASON         VERSION
-> 22/tcp   open  ssh     syn-ack ttl 64 OpenSSH 7.3p1 Ubuntu 1ubuntu0.1 (Ubuntu Linux; protocol 2.0)
-> | ssh-hostkey: 
-> |   2048 40:3e:c5:6f:dc:63:c5:af:43:51:28:5c:05:f5:98:c2 (RSA)
-> | ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwD5BkuUf9zDQ1+TkrK0K9VffoH9cCm9OPa215nFtfOejQkf7k3ppxkKqZxlbsOZje5pp9y5gv4EMeAatn1BL2KbMlT96UW0tcFyC8uRJdFITpd1LnzusucVvpP5qa29gyNVJrx/scsdE9bIwB++toL4kSbX40kbUA4u+26qqKXyPaaO7SMo0VxM+7E4l5ZXIV9kfVo6SYcCTHo/WG48iSrbe1UGQg3VR0xxtU9OZg/oiS7BHvqracFTn71Obp+KaN6KA8R3NKQcxA+FSlr1jOVmr3q1b6++RAij4jajwafC1iu0tcy9WkhTrXBLbtmPJ2WI4/8cKO4zhuW0Z2eieD
-> |   256 bb:9c:b0:3c:ff:48:8a:2b:37:d2:fe:2e:78:ce:8c:a9 (ECDSA)
-> | ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFLxp5pS3QOLUV+Mfsyeak4GLeciDrUVshZbJEzKKGu/IPOxzNzkVna0IcfGCyRfzfJp1/R6I3k4CdKj6wD2Xo4=
-> |   256 ff:85:4e:91:29:da:d1:1b:b3:11:26:5b:d8:c0:7a:f8 (EdDSA)
-> |_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDA1x1iCaJYag2vwfBSvDU1ffJ+WtKs4kWCJe/mLxBFm
-> 80/tcp   open  http    syn-ack ttl 64 Apache httpd
-> | http-methods: 
-> |_  Supported Methods: GET HEAD
-> |_http-server-header: Apache
-> |_http-title: Proteus | v 1.0
-> 5355/tcp open  llmnr?  syn-ack ttl 1
+> PORT     STATE SERVICE REASON         VERSION  
+> 22/tcp   open  ssh     syn-ack ttl 64 OpenSSH 7.3p1 Ubuntu 1ubuntu0.1 (Ubuntu Linux; protocol 2.0)  
+> | ssh-hostkey:   
+> |   2048 40:3e:c5:6f:dc:63:c5:af:43:51:28:5c:05:f5:98:c2 (RSA)  
+> | ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwD5BkuUf9zDQ1+TkrK0K9VffoH9cCm9OPa215nFtfOejQkf7k3ppxkKqZxlbsOZje5pp9y5gv4EMeAatn1BL2KbMlT96UW0tcFyC8uRJdFITpd1LnzusucVvpP5qa29gyNVJrx/scsdE9bIwB++toL4kSbX40kbUA4u+26qqKXyPaaO7SMo0VxM+7E4l5ZXIV9kfVo6SYcCTHo/WG48iSrbe1UGQg3VR0xxtU9OZg/oiS7BHvqracFTn71Obp+KaN6KA8R3NKQcxA+FSlr1jOVmr3q1b6++RAij4jajwafC1iu0tcy9WkhTrXBLbtmPJ2WI4/8cKO4zhuW0Z2eieD  
+> |   256 bb:9c:b0:3c:ff:48:8a:2b:37:d2:fe:2e:78:ce:8c:a9 (ECDSA)  
+> | ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFLxp5pS3QOLUV+Mfsyeak4GLeciDrUVshZbJEzKKGu/IPOxzNzkVna0IcfGCyRfzfJp1/R6I3k4CdKj6wD2Xo4=  
+> |   256 ff:85:4e:91:29:da:d1:1b:b3:11:26:5b:d8:c0:7a:f8 (EdDSA)  
+> |_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDA1x1iCaJYag2vwfBSvDU1ffJ+WtKs4kWCJe/mLxBFm  
+> 80/tcp   open  http    syn-ack ttl 64 Apache httpd  
+> | http-methods:   
+> |_  Supported Methods: GET HEAD  
+> |_http-server-header: Apache  
+> |_http-title: Proteus | v 1.0  
+> 5355/tcp open  llmnr?  syn-ack ttl 1  
 
 Nikto and Dirb scans are kicked off for port 80. Let's continue exploring the website.
 
@@ -68,11 +68,11 @@ can use it to access our own payloads on the server if  need be.
 I needed to generate a 'bad characters' list as some commands would not pass through. The website makes this pretty simple and fails 
 obviously when testing. 
 
-Good chars
+**Good chars**
 
 ![good_chars](https://github.com/jlreiter/Proteus1/blob/master/imgs/good_chars.png)
 
-Bad chars
+**Bad chars**
 
 ![bad_chars](https://github.com/jlreiter/Proteus1/blob/master/imgs/bad_chars.png)
 
@@ -145,7 +145,7 @@ I initially thought I could overwrite the /etc/passwd file and remove the root a
 the overflow just appends user input to the end. It also doesn't handle new lines very well either. Another easy thing to do is 
 add an account to the machine. I crafted a user without a password and the machine still wouldn't let me su. 
 
-Then, hashed a password (I used openssl passwd), created a user, su ... and fail because the overflow overwrote the \:shell\: 
+Then, hashed a password (I used openssl passwd), created a user, su ... and fail because the overflow overwrote the : shell : 
 section of /etc/passwd and the machine didn't know what to give me. 
 
 ![almost_final_payload](https://github.com/jlreiter/Proteus1/blob/master/imgs/almost_final_userInput_payload.png)
