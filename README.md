@@ -133,12 +133,12 @@ root with a certain space for a payload. A few things to note about the overflow
  
 With these notes in mind, I can craft a payload. I fire up python interpreter for some quick work.  
 `def pad(len):`  
-`    pad="A"*len`  
+`    pad="A"`*`len`  
 `    return pad`  
   
 `def gen():`  
-`    payload=userInput + pad(patternCustomLen-len(userInput)) + fileToOverwrite`  
-`    print payload`  
+    `payload=userInput + pad(patternCustomLen-len(userInput)) + fileToOverwrite`  
+    `print payload`
 
 I initially thought I could overwrite the /etc/passwd file and remove the root account password, but this is when I found that 
 the overflow just appends user input to the end. It also doesn't handle new lines very well either. Another easy thing to do is 
