@@ -133,8 +133,8 @@ root with a certain space for a payload. A few things to note about the overflow
  
 With these notes in mind, I can craft a payload. I fire up python interpreter for some quick work.  
 `def pad(len):`  
-`    pad="A"`*`len`  
-`    return pad`  
+    `pad="A"` * `len`  
+    `return pad`  
   
 `def gen():`  
     `payload=userInput + pad(patternCustomLen-len(userInput)) + fileToOverwrite`  
