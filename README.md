@@ -39,14 +39,13 @@ Nikto and Dirb scans are kicked off for port 80. Let's continue exploring the we
 Fire up Burp and head to the web page. 
 
 ![Proteus_home](/imgs/proteus_homepage.png)
-<link href="{{ "blob/master/imgs/proteus_homepage.png" | https://github.com/jlreiter/Proteus1/blob/master/imgs/proteus_homepage.png }}" rel="stylesheet">
 
 First notes are that there is a file upload, which is always fun to play with, and a login. 
 Some quick auth bypass tries and sqlmap bear no fruit, so I focus on the main function and upload some files. If you upload something 
 that doesn't fit the MIME type, Proteus gets mad at you and rejects. When you get a successful upload, Proteus brings you to 
 the /samples page. 
 
-![Proteus_successful_upload](https://github.com/jlreiter/Proteus1/blob/master/imgs/default_sucessful_upload.png)
+![Proteus_successful_upload](imgs/default_sucessful_upload.png)
 
 Proteus changes our file name to a base64 encoded value, runs strings, and runs objdump on our file. That's nice of them. I can also 
 see under objdump our file name (stored in /home/malwareadm/samples/). 
