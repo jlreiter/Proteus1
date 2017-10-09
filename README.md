@@ -38,7 +38,7 @@ Nikto and Dirb scans are kicked off for port 80. Let's continue exploring the we
 
 Fire up Burp and head to the web page. 
 
-![Proteus_home](https://github.com/jlreiter/Proteus1/blob/master/imgs/proteus_homepage.png)
+![Proteus_home](/imgs/proteus_homepage.png)
 <link href="{{ "blob/master/imgs/proteus_homepage.png" | https://github.com/jlreiter/Proteus1/blob/master/imgs/proteus_homepage.png }}" rel="stylesheet">
 
 First notes are that there is a file upload, which is always fun to play with, and a login. 
